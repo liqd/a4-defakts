@@ -2,8 +2,8 @@
 
 [adhocracy.plus](https://adhocracy.plus/) is a free Open-Source participation platform maintained and primarily developed by Liquid Democracy e.V.. It is based on [adhocracy 4](https://github.com/liqd/adhocracy4) and [Django](https://github.com/django/django).
 
-![Build Status](https://github.com/liqd/adhocracy-plus/actions/workflows/django.yml/badge.svg)
-[![Coverage Status](https://coveralls.io/repos/github/liqd/adhocracy-plus/badge.svg?branch=main)](https://coveralls.io/github/liqd/adhocracy-plus?branch=main)
+![Build Status](https://github.com/liqd/a4-defakts/actions/workflows/django.yml/badge.svg)
+[![Coverage Status](https://coveralls.io/repos/github/liqd/a4-defakts/badge.svg?branch=main)](https://coveralls.io/github/liqd/a4-defakts?branch=main)
 
 ## Getting started
 
