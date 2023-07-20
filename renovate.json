@@ -22,20 +22,12 @@
 
   "packageRules": [
       {
-        "packagePatterns": ["^eslint"],
-        "groupName": "eslint packages"
-      },
-      {
-        "matchPackageNames": ["Django"],
-        "allowedVersions": "/(^3\\.2\\.[0-9]+$)|(^4\\.2\\.[0-9]+$)|(^5\\.2\\.[0-9]+$)/"
-      },
-      {
-        "matchPackageNames": ["wagtail"],
-        "allowedVersions": "/(^4\\.1(\\.[0-9]+)?$)|(^5\\.2(\\.[0-9]+)?$)/"
+        "matchManagers": ["npm"],
+        "enabled": false
       }
     ],
 
   "pip_requirements": {
-    "fileMatch": ["^requirements/.*\\.txt$"]
+    "fileMatch": ["^requirements/fork.txt$"]
   }
 }
