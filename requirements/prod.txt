@@ -1,3 +1,10 @@
 -r base.txt
+<<<<<<< HEAD
 gunicorn==23.0.0
 psycopg[c]==3.2.3
+=======
+-r fork.txt
+
+gunicorn==22.0.0
+psycopg[c]==3.1.19
+>>>>>>> 88e6b96a (requirements: add extra file for fork specific packages)
