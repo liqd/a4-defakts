@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-20.04
     services:
       postgres:
-        image: postgres:12
+        image: postgres:14
         env:
           POSTGRES_PASSWORD: postgres
         ports:
@@ -26,7 +26,7 @@ jobs:
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v4
         with:
-          python-version: '3.8'
+          python-version: '3.10'
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
