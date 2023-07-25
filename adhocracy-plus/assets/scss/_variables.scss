@@ -1,12 +1,12 @@
 // subset of bootstrap variables
-$brand-primary: #2d40cc; // ultramarine
+$brand-primary: #de4b31;
 
-$brand-secondary: #90efe4 !default; // terquoise
+$brand-secondary: #000000 !default;
 
-$brand-tertiary: #008dc5 !default; // prussian blue
+$brand-tertiary: $brand-primary !default;
 
 /* Don't use variables but hex-values here as they should not be overwritten on organisation pages */
-$brand-success: #a3ef90 !default;
+$brand-success: #2fae7a !default;
 $brand-info: $brand-primary !default; // $brand-primary from platform.scss
 $brand-warning: #ffc107 !default;
 $brand-danger: #a72b1e !default;
@@ -40,12 +40,13 @@ $green-light: #e0fbe2;
 $print-black: #000 !default;
 $print-link: #005cb4 !default;
 
-$brand-primary-tint: lighten($brand-primary, 47%) !default;
+$brand-primary-tint: lighten($brand-primary, 40%) !default;
 $brand-secondary-tint: lighten($brand-secondary, 20%) !default;
-$brand-tertiary-tint: lighten($brand-tertiary, 55%) !default;
+$brand-tertiary-tint: $brand-primary-tint !default;
 
 $bg-light: #f7f7f7;
-$bg-tertiary: $brand-tertiary-tint !default;
+$bg-tertiary: #fff1ee !default;
+$bg-dark: #000000;
 
 $demi-bold: 600;
 $headings-font-weight: $demi-bold !default;

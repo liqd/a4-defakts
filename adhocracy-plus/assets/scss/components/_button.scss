@@ -77,7 +77,7 @@
 }
 
 .btn.btn--secondary-filled {
-    @include button-bg($brand-secondary, $brand-secondary, $print-black, 10%);
+    @include button-bg($brand-secondary, $brand-secondary, $body-bg, 15%);
 }
 
 .btn.btn--bg-tertiary {
@@ -94,6 +94,17 @@
     &:hover,
     &:active {
         background-color: transparent !important;
+        text-decoration: underline;
+    }
+}
+
+.btn.btn--transparent--inverted {
+    @include button($print-black, $brand-primary, $body-bg, 7%);
+    background-color: transparent;
+
+    &:focus,
+    &:hover,
+    &:active {
         text-decoration: underline;
     }
 }
