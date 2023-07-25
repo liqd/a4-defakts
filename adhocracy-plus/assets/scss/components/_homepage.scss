@@ -17,15 +17,18 @@ $spacer-xl: 7.5rem;
 }
 
 // single col cta styling - for headline
-.homepage__wrapper .block-row-1 {
-    background-color: $body-bg;
+.homepage__wrapper .block-columns_cta:has(.block-row-1) {
+    background-color: $brand-primary;
+    color: $body-bg;
+}
 
+.homepage__wrapper .block-row-1 {
     @media screen and (min-width: $breakpoint-xs) {
-        padding-top: $block-padding;
+        padding-block: $block-padding;
     }
 
     @media screen and (min-width: $breakpoint-md) {
-        padding-top: $block-padding-md;
+        padding-block: $block-padding-md;
     }
 }
 
@@ -34,38 +37,11 @@ $spacer-xl: 7.5rem;
     background-color: $body-bg;
 
     @media screen and (min-width: $breakpoint-xs) {
-        padding: $padding $block-padding $block-padding $block-padding;
+        padding: $block-padding;
     }
 
     @media screen and (min-width: $breakpoint-md) {
-        padding: $padding $block-padding-md $block-padding-md $block-padding-md;
-    }
-}
-
-.homepage__wrapper .block-img-col-2 {
-    .rich-text,
-    .block-col_cta-content {
-        padding: 2 * $padding $padding 0 2 * $padding;
-
-        @media screen and (min-width: $breakpoint-md) {
-            padding-right: $block-padding-md;
-        }
-
-        @media screen and (min-width: $breakpoint-xl) {
-            padding-left: 3 * $padding;
-        }
-    }
-}
-
-.homepage__wrapper .block-img-col__image {
-    width: 100%;
-    position: relative;
-    right: -$spacer;
-    margin-top: $r-spacer;
-
-    @media screen and (min-width: $breakpoint-xxl) {
-        margin-top: 2 * $spacer;
-        right: 3 * -$spacer;
+        padding: $block-padding-md;
     }
 }
 

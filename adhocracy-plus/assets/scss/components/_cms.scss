@@ -12,15 +12,6 @@
 .cms__title--underlined {
     position: relative;
     margin-bottom: 3 * $r-spacer;
-
-    &:after {
-        content: "";
-        position: absolute;
-        left: calc(50% - 40px);
-        bottom: -20px;
-        width: 80px;
-        border-bottom: solid 8px $brand-secondary;
-    }
 }
 
 .cms__text {
