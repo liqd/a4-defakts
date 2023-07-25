@@ -1,21 +1,21 @@
 .footer {
-    border-top: 2px solid $brand-primary;
-}
-
-.footer--cms {
-    background-color: $bg-light;
+    background-color: $bg-dark;
 }
 
 .footer__link {
     padding-right: $padding;
+    color: contrast-color($bg-dark);
 
     a {
         font-weight: normal;
+        color: contrast-color($bg-dark);
     }
 }
 
-.footer__description {
+.footer__description,
+.footer__description a {
     font-family: $font-family-serif;
+    color: contrast-color($bg-dark);
 }
 
 .footer__no-banner > .row {
