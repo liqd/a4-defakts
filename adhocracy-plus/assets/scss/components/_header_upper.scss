@@ -33,6 +33,10 @@
     }
 }
 
+.header-upper__user a {
+    color: $body-bg !important;
+}
+
 .header-upper__mobile-toggle {
     font-weight: bold;
 }
