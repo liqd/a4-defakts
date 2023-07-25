@@ -129,7 +129,7 @@
     border-radius: $spacer !important;
 }
 
-.form-check-input:checked ~ .dashboard-nav__toggle-label:before {
+.dashboard-nav__form--project .form-check-input:checked {
     border-color: $brand-primary !important;
     background-color: $brand-primary !important;
 }
