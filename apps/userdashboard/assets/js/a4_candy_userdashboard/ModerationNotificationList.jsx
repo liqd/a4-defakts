@@ -13,8 +13,9 @@ const isReadFilterItems = [
 ]
 
 const reportsFilterItems = [
-  { label: django.gettext('Reported'), value: 'True' },
-  { label: django.gettext('All comments'), value: 'All' }
+  { label: django.gettext('Reported by AI'), value: 'ai' },
+  { label: django.gettext('Reported by Users'), value: 'users' },
+  { label: django.gettext('All comments'), value: 'off' }
 ]
 
 const orderingFilterItems = [
@@ -29,7 +30,7 @@ export default class ModerationNotificationList extends Component {
 
     this.state = {
       moderationComments: [],
-      selectedFilters: { isRead: 'False', hasReports: 'All', ordering: '-num_reports' },
+      selectedFilters: { isRead: 'False', reportedBy: 'off', ordering: '-num_reports' },
       numOfComments: PACKET_COMMENT_SIZE,
       hasMore: null,
       packetFactor: 1,
@@ -59,7 +60,7 @@ export default class ModerationNotificationList extends Component {
     this.setState({
       selectedFilters: {
         ...this.state.selectedFilters,
-        hasReports: value
+        reportedBy: value
       },
       isLoaded: false
     },
@@ -81,7 +82,7 @@ export default class ModerationNotificationList extends Component {
 
   getUrlParams () {
     return '?is_reviewed=' + this.state.selectedFilters.isRead +
-      '&has_reports=' + this.state.selectedFilters.hasReports +
+      '&reported_by=' + this.state.selectedFilters.reportedBy +
       '&ordering=' + this.state.selectedFilters.ordering +
       '&num_of_comments=' + this.state.numOfComments
   }
@@ -200,7 +201,7 @@ export default class ModerationNotificationList extends Component {
               filterClass="filter--full dropdown dropdown-menu-end"
               filterItems={reportsFilterItems}
               onFilterChange={(value) => this.reportsFilterChangeHandle(value)}
-              selectedFilter={this.state.selectedFilters.hasReports}
+              selectedFilter={this.state.selectedFilters.reportedBy}
               filterText={django.gettext('Filter')}
             />
           </div>
