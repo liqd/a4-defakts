@@ -1,7 +1,4 @@
 from django.db.models import Count
-from django.db.models import ExpressionWrapper
-from django.db.models import Q
-from django.db.models.fields import BooleanField
 from django.shortcuts import get_object_or_404
 from django_filters.rest_framework import BooleanFilter
 from django_filters.rest_framework import DjangoFilterBackend
@@ -23,9 +20,20 @@ from . import serializers
 
 class ModerationCommentFilterSet(DefaultsRestFilterSet):
     is_reviewed = BooleanFilter()
-    has_reports = BooleanFilter()
 
-    defaults = {"is_reviewed": "false", "has_reports": "all"}
+    defaults = {"is_reviewed": "false"}
+
+    @property
+    def qs(self):
+        queryset = super().qs
+        reported_by = self.request.query_params.get("reported_by")
+
+        if reported_by == "ai":
+            queryset = queryset.filter(ai_report__isnull=False)
+        elif reported_by == "users":
+            queryset = queryset.filter(reports__isnull=False)
+
+        return queryset
 
 
 class ModerationCommentPagination(PageNumberPagination):
@@ -62,17 +70,18 @@ class ModerationCommentViewSet(
         return self.project
 
     def get_queryset(self):
-        all_comments_project = helpers.get_all_comments_project(self.project)
-        num_reports = Count("reports", distinct=True)
-        return all_comments_project.annotate(num_reports=num_reports).annotate(
-            has_reports=ExpressionWrapper(
-                Q(num_reports__gt=0), output_field=BooleanField()
-            )
+        comments = helpers.get_all_comments_project(self.project)
+        comments = comments.annotate(
+            num_reports=Count("reports", distinct=True)
+            + Count("ai_report", distinct=True),
         )
 
+        return comments
+
     def update(self, request, *args, **kwargs):
-        if "is_blocked" in self.request.data and request.data["is_blocked"]:
+        if request.data.get("is_blocked"):
             NotifyCreatorOnModeratorBlocked.send(self.get_object())
+
         return super().update(request, *args, **kwargs)
 
     @action(detail=True)
