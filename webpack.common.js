@@ -50,16 +50,6 @@ module.exports = {
       ],
       dependOn: 'adhocracy4'
     },
-    interactiveevents: {
-      import: [
-        './apps/interactiveevents/assets/react_interactiveevents_init.jsx'
-      ]
-    },
-    interactiveevents_presents: {
-      import: [
-        './apps/interactiveevents/assets/react_interactiveevents_present_init.jsx'
-      ]
-    },
     init_dashboard_accordion: {
       import: [
         './adhocracy-plus/assets/js/init_dashboard_accordion.js'
@@ -126,18 +116,6 @@ module.exports = {
     image_uploader: {
       import: [
         'adhocracy4/adhocracy4/images/assets/image_uploader.js'
-      ],
-      dependOn: 'adhocracy4'
-    },
-    poll_management: {
-      import: [
-        'adhocracy4/adhocracy4/polls/static/react_poll_management.jsx'
-      ],
-      dependOn: 'adhocracy4'
-    },
-    polls: {
-      import: [
-        'adhocracy4/adhocracy4/polls/static/react_polls.jsx'
       ],
       dependOn: 'adhocracy4'
     },

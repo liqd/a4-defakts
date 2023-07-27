@@ -2,12 +2,15 @@ import pytest
 from django.urls import reverse
 from rest_framework import status
 
+<<<<<<< HEAD
 from adhocracy4.polls import phases
 from adhocracy4.polls.models import Poll
 from adhocracy4.polls.models import Vote
 from adhocracy4.test.helpers import freeze_phase
 from adhocracy4.test.helpers import setup_phase
 from apps.dashboard.blueprints import blueprints
+=======
+>>>>>>> 9849d9ea (apps/dashboard/blueprints: remove un-needed blueprints and fix tests // webpack.common: remove uneeded apps)
 from apps.projects.insights import create_insight
 from apps.projects.models import ProjectInsight
 from apps.projects.models import create_insight_context
@@ -50,35 +53,6 @@ def test_draft_modules_do_not_trigger_show_results(
     labels = [label for label, count in context["counts"]]
 
     assert expected_label not in labels
-
-
-@pytest.mark.django_db
-@pytest.mark.parametrize("module_name", ["brainstorming", "poll", "interactive-event"])
-def test_create_insight_context(
-    module_name,
-    module_factory,
-):
-    expected_label = {
-        "brainstorming": "written ideas",
-        "poll": "poll answers",
-        "interactive-event": "interactive event questions",
-    }
-
-    blueprint_type = None
-    for blueprint in blueprints:
-        if blueprint[0] == module_name:
-            blueprint_type = blueprint[1].type
-            break
-
-    assert blueprint_type
-
-    module = module_factory(blueprint_type=blueprint_type)
-    insight = create_insight(project=module.project)
-    context = create_insight_context(insight=insight)
-
-    labels = [label for label, count in context["counts"]]
-
-    assert expected_label[module_name] in labels
 
 
 @pytest.mark.django_db
