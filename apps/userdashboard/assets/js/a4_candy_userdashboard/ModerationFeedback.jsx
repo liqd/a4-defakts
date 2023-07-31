@@ -12,7 +12,7 @@ export const ModerationFeedback = (props) => {
   }
 
   return (
-    <div className="userdashboard-mod-feedback">
+    <li className="userdashboard-mod-feedback">
       <div className="row">
         <div className="col-7 col-md-8 userdashboard-mod-feedback__header">
           <div>{translated.feedbackTitle}</div>
@@ -68,6 +68,6 @@ export const ModerationFeedback = (props) => {
           <p>{feedbackText}</p>
         </div>
       </div>
-    </div>
+    </li>
   )
 }

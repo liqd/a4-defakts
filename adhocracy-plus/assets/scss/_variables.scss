@@ -74,6 +74,13 @@ $font-size-base: 1.125rem !default; //18px
 $font-size-sm: 1rem !default; // 16px
 $font-size-xs: 0.8rem !default; // 12.8px
 
+$h1-font-size: $font-size-xxxl;
+$h2-font-size: $font-size-xxl;
+$h3-font-size: $font-size-xl;
+$h4-font-size: $font-size-lg;
+$h5-font-size: $font-size-md;
+$h6-font-size: $font-size-sm;
+
 $mobile-headline-size: 0.8 !default;
 
 $shadow: rgba(#000, 0.25) !default;
