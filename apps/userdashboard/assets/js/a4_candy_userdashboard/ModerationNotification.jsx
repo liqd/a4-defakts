@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import django from 'django'
 import api from './api'
+import { AiReportExplanation } from './AiReportExplanation'
 import { ModerationFeedbackForm } from './ModerationFeedbackForm'
 import { ModerationFeedback } from './ModerationFeedback'
 import { ModerationNotificationActionsBar } from './ModerationNotificationActionsBar'
@@ -21,7 +22,9 @@ const translated = {
   notificationRead: django.gettext('Notification successfully marked as read.'),
   notificationUnread: django.gettext('Notification successfully marked as unread.'),
   aiClassified: django.gettext('AI'),
-  postedComment: django.gettext('posted a {}comment{}')
+  postedComment: django.gettext('posted a {}comment{}'),
+  dummyText: django.gettext('Dummy text')
+
 }
 
 export const ModerationNotification = (props) => {
@@ -257,8 +260,8 @@ export const ModerationNotification = (props) => {
 
   return (
     <li>
-      <div className="u-border p-4">
-        <div className="d-flex flex-wrap">
+      <ul className="u-border p-4 u-list-reset">
+        <li className="d-flex flex-wrap">
           {userImageDiv}
           <div>
             <p className="mb-1">
@@ -291,17 +294,20 @@ export const ModerationNotification = (props) => {
               </ul>
             </div>
           </div>
-        </div>
+        </li>
 
         {numReports > 0 &&
-          <div>
+          <li>
             <p>
               <i className="fas fa-exclamation-circle me-1" aria-hidden="true" />
               {getLink(translatedReportText(numReports), commentUrl)}
             </p>
-          </div>}
-
-        <p>{commentText}</p>
+          </li>}
+        <li>
+          <p>{commentText}</p>
+        </li>
+        {/* FIXME add if once report added to serializer */}
+        <AiReportExplanation AiReport={translated.dummyText} />
         <ModerationNotificationActionsBar
           itemPk={notification.pk}
           isEditing={notification.moderator_feedback}
@@ -320,7 +326,7 @@ export const ModerationNotification = (props) => {
               setIsEditing(true)
             }}
           />}
-      </div>
+      </ul>
       {showFeedbackForm &&
         <ModerationFeedbackForm
           onSubmit={(payload) => handleFeedbackSubmit(payload)}
