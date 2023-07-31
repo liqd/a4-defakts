@@ -33,8 +33,8 @@
     }
 }
 
-.header-upper__user a {
-    color: $body-bg !important;
+.header-upper__user .navi__item a {
+    color: $body-bg;
 }
 
 .header-upper__mobile-toggle {
