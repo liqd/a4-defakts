@@ -93,9 +93,14 @@
 
     &:focus,
     &:hover,
-    &:active {
+    &:active,
+    &:focus-within {
         background-color: transparent !important;
         text-decoration: underline;
+    }
+
+    &:focus-visible {
+        @include fake-focus-shadow;
     }
 }
 
@@ -116,11 +121,19 @@
 
     &:focus,
     &:hover,
-    &:active,
+    &:active {
+        box-shadow: none;
+        background-color: $bg-light;
+    }
+
+    &:focus-visible {
+        @include fake-focus-shadow;
+    }
+
     &:disabled,
     &.is-disabled {
         box-shadow: none;
-        background-color: $bg-light;
+        color: $text-muted;
     }
 
     // needed for toggle switch

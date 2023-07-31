@@ -1,0 +1,52 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Snapshot to confirm Read Less is rendered after clicking Read More button <AiReportExplanation> 1`] = `
+<div>
+  <li
+    class="alert alert--danger d-flex text-start fs-6 mb-3"
+  >
+    <i
+      aria-hidden="True"
+      class="fas fa-exclamation-circle text-danger pt-1 pe-2"
+    />
+    <p
+      class="pe-4"
+    >
+      This comment contains disinformation. Defakts uses an Artificial Intelligence to scan content for disinformation. Disinformation often shows certain characteristics that allow for a reliable identification. 
+      This is the ai report 
+      <button
+        aria-label="Click to hide the AI explanation for reporting this comment."
+        class="btn--link text-danger"
+        type="button"
+      >
+        Read less
+      </button>
+    </p>
+  </li>
+</div>
+`;
+
+exports[`Snapshot to confirm Read More is rendered <AiReportExplanation> 1`] = `
+<div>
+  <li
+    class="alert alert--danger d-flex text-start fs-6 mb-3"
+  >
+    <i
+      aria-hidden="True"
+      class="fas fa-exclamation-circle text-danger pt-1 pe-2"
+    />
+    <p
+      class="pe-4"
+    >
+      This comment contains disinformation. Defakts uses an Artificial Intelligence to scan content for disinformation. Disinformation often shows certain characteristics that allow for a reliable identification. 
+      <button
+        aria-label="Click to view the AI explanation for reporting this comment."
+        class="btn--link text-danger"
+        type="button"
+      >
+        Read more
+      </button>
+    </p>
+  </li>
+</div>
+`;
