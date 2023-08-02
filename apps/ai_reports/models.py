@@ -14,3 +14,6 @@ class AiReport(TimeStampedModel):
         on_delete=models.CASCADE,
         related_name="ai_report",
     )
+
+    def __str__(self):
+        return "%s" % (self.explanation)

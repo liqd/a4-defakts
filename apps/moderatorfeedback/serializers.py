@@ -34,12 +34,11 @@ class ModeratorCommentFeedbackSerializer(serializers.ModelSerializer):
 
 class CommentWithFeedbackSerializer(a4_serializers.CommentSerializer):
     moderator_feedback = ModeratorCommentFeedbackSerializer(read_only=True)
+    ai_report = serializers.StringRelatedField(read_only=True)
 
     class Meta:
         model = Comment
-        read_only_fields = a4_serializers.CommentSerializer.Meta.read_only_fields + (
-            "moderator_comment_feedback",
-        )
+        read_only_fields = a4_serializers.CommentSerializer.Meta.read_only_fields
         exclude = ("creator",)
 
 
