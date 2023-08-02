@@ -8,7 +8,9 @@ export const ModerationFeedback = (props) => {
     delete: django.gettext('delete'),
     edit: django.gettext('edit'),
     feedbackTitle: django.gettext('Moderator\'s feedback'),
-    editWasOn: django.gettext('Last edit was on ')
+    editWasOn: django.gettext('Last edit was on '),
+    feedbackMenu: django.gettext('Feedback menu')
+
   }
 
   return (
@@ -21,7 +23,7 @@ export const ModerationFeedback = (props) => {
           <div className="text-end">
             <div className="dropdown">
               <button
-                title="{% trans 'Feedback menu' %}"
+                title={translated.feedbackMenu}
                 type="button"
                 className="dropdown-toggle btn btn--none"
                 aria-haspopup="true"
