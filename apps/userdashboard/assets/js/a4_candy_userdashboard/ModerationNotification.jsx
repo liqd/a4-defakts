@@ -23,7 +23,8 @@ const translated = {
   notificationUnread: django.gettext('Notification successfully marked as unread.'),
   aiClassified: django.gettext('AI'),
   postedComment: django.gettext('posted a {}comment{}'),
-  dummyText: django.gettext('Dummy text')
+  notificationMenu: django.gettext('Notification menu'),
+  dummyText: django.pgettext('defakts', 'Dummy text')
 
 }
 
@@ -238,7 +239,8 @@ export const ModerationNotification = (props) => {
     user_image: userImage,
     user_name: userName,
     user_profile_url: userProfileUrl,
-    num_reports: numReports
+    num_reports: numReports,
+    ai_report: aiReport
   } = notification
   const markReadText = django.gettext('Mark as read')
   const markUnreadText = django.gettext('Mark as unread')
@@ -272,7 +274,7 @@ export const ModerationNotification = (props) => {
           <div className="col-auto ms-auto">
             <div className="dropdown">
               <button
-                title="{% trans 'Notification menu' %}"
+                title={translated.notificationMenu}
                 type="button"
                 className="dropdown-toggle btn btn--none"
                 aria-haspopup="true"
@@ -312,8 +314,13 @@ export const ModerationNotification = (props) => {
         <li>
           <p>{commentText}</p>
         </li>
-        {/* FIXME add if once report added to serializer */}
-        <AiReportExplanation AiReport={translated.dummyText} />
+
+        {aiReport &&
+          <AiReportExplanation
+            AiReport={translated.dummyText}
+            notificationPk={notification.pk}
+          />}
+
         <ModerationNotificationActionsBar
           itemPk={notification.pk}
           isEditing={notification.moderator_feedback}
