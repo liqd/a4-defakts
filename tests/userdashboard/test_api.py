@@ -105,7 +105,13 @@ def test_moderator_can_mark_comment_read(apiclient, comment_factory, idea):
 
 
 @pytest.mark.django_db
-def test_queryset_and_filters(apiclient, report_factory, comment_factory, idea_factory):
+def test_queryset_and_filters(
+    apiclient,
+    report_factory,
+    ai_report_factory,
+    comment_factory,
+    idea_factory,
+):
     idea = idea_factory(module__project__pk=1)
     other_idea = idea_factory(module__project__pk=2)
     project = idea.project
@@ -121,9 +127,10 @@ def test_queryset_and_filters(apiclient, report_factory, comment_factory, idea_f
     )
     comment_5 = comment_factory(content_object=other_idea)
 
-    # comment_1 with 2 reports
+    # comment_1 with 2 reports and 1 ai report
     report_factory(content_object=comment_1)
     report_factory(content_object=comment_1)
+    ai_report_factory(comment=comment_1)
     # comment_2 with 1 report, is read
     report_factory(content_object=comment_2)
     # comment_3 with 1 report
@@ -141,35 +148,57 @@ def test_queryset_and_filters(apiclient, report_factory, comment_factory, idea_f
     response = apiclient.get(url)
     assert response.status_code == 200
     assert len(response.data) == 2
-    comment_pks = [comment["pk"] for comment in response.data]
-    assert comment_pks == [comment_1.pk, comment_3.pk]
+    assert [comment["pk"] for comment in response.data] == [comment_1.pk, comment_3.pk]
 
     # test default sorting is most reported (second sorting -created)
     filter_string = "?is_reviewed=all"
     response = apiclient.get(url + filter_string)
     assert response.status_code == 200
     assert len(response.data) == 4
-    comment_pks = [comment["pk"] for comment in response.data]
-    assert comment_pks == [comment_1.pk, comment_3.pk, comment_2.pk, comment_4.pk]
+    assert [comment["pk"] for comment in response.data] == [
+        comment_1.pk,
+        comment_3.pk,
+        comment_2.pk,
+        comment_4.pk,
+    ]
 
-    filter_string = "?is_reviewed=all&has_reports=False"
+    filter_string = "?is_reviewed=all&reported_by=users"
+    response = apiclient.get(url + filter_string)
+    assert response.status_code == 200
+    assert len(response.data) == 3
+    assert [comment["pk"] for comment in response.data] == [
+        comment_1.pk,
+        comment_3.pk,
+        comment_2.pk,
+    ]
+
+    filter_string = "?is_reviewed=all&reported_by=ai"
     response = apiclient.get(url + filter_string)
     assert response.status_code == 200
     assert len(response.data) == 1
-    comment_pks = [comment["pk"] for comment in response.data]
-    assert comment_pks == [comment_4.pk]
+    assert [comment["pk"] for comment in response.data] == [comment_1.pk]
 
-    filter_string = "?has_reports=False"
+    filter_string = "?is_reviewed=all&reported_by=off"
     response = apiclient.get(url + filter_string)
     assert response.status_code == 200
-    assert len(response.data) == 0
+    assert len(response.data) == 4
+    assert [comment["pk"] for comment in response.data] == [
+        comment_1.pk,
+        comment_3.pk,
+        comment_2.pk,
+        comment_4.pk,
+    ]
 
     filter_string = "?is_reviewed=all&ordering=created"
     response = apiclient.get(url + filter_string)
     assert response.status_code == 200
     assert len(response.data) == 4
-    comment_pks = [comment["pk"] for comment in response.data]
-    assert comment_pks == [comment_2.pk, comment_1.pk, comment_3.pk, comment_4.pk]
+    assert [comment["pk"] for comment in response.data] == [
+        comment_2.pk,
+        comment_1.pk,
+        comment_3.pk,
+        comment_4.pk,
+    ]
 
 
 @pytest.mark.django_db
