@@ -9,35 +9,46 @@ from apps.contrib import dates
 
 
 @pytest.mark.django_db
-def test_num_reports(apiclient, report_factory, comment_factory, idea):
-    comment_1 = comment_factory(content_object=idea)
-    report_factory(content_object=comment_1)
+def test_num_reports(
+    apiclient,
+    report_factory,
+    ai_report_factory,
+    comment_factory,
+    idea,
+):
+    comments = comment_factory.create_batch(size=4, content_object=idea)
+    comments = {comment.pk: comment for comment in comments}
+    pks = list(comments)
 
-    comment_2 = comment_factory(content_object=idea)
-    report_factory(content_object=comment_2)
-    report_factory(content_object=comment_2)
+    n_user_reports = [1, 3, 0, 0]
+    num_user_reports_created = dict(zip(pks, n_user_reports))
+    for pk, size in num_user_reports_created.items():
+        report_factory.create_batch(size=size, content_object=comments[pk])
 
-    comment_3 = comment_factory(content_object=idea)
+    has_ai_report = [True, False, True, False]
+    ai_reports_created = dict(zip(comments, has_ai_report))
+    for pk, has_ai_report in ai_reports_created.items():
+        if has_ai_report:
+            ai_report_factory(comment=comments[pk])
+
+    num_reports_created = {
+        i: num_user_reports_created[i] + int(ai_reports_created[i]) for i in pks
+    }
 
     project = idea.project
     moderator = project.moderators.first()
     apiclient.login(username=moderator.email, password="password")
     url = reverse("moderationcomments-list", kwargs={"project_pk": project.pk})
     response = apiclient.get(url)
+
     assert response.status_code == 200
-    assert len(response.data) == 3
-    comment_1_data = [
-        comment for comment in response.data if comment["pk"] == comment_1.pk
-    ][0]
-    comment_2_data = [
-        comment for comment in response.data if comment["pk"] == comment_2.pk
-    ][0]
-    comment_3_data = [
-        comment for comment in response.data if comment["pk"] == comment_3.pk
-    ][0]
-    assert comment_1_data["num_reports"] == 1
-    assert comment_2_data["num_reports"] == 2
-    assert comment_3_data["num_reports"] == 0
+    assert len(response.data) == 4
+
+    num_reports_received = {
+        comment["pk"]: comment["num_reports"] for comment in response.data
+    }
+
+    assert num_reports_created == num_reports_received
 
 
 @pytest.mark.django_db
