@@ -7,6 +7,7 @@ from rest_framework.utils import model_meta
 
 from adhocracy4.comments.models import Comment
 from apps.ai_reports.serializers import AiReportSerializer
+from adhocracy4.reports.api import ReportSerializer
 from apps.contrib.dates import get_date_display
 from apps.moderatorfeedback.serializers import ModeratorCommentFeedbackSerializer
 
@@ -23,6 +24,7 @@ class ModerationCommentSerializer(serializers.ModelSerializer):
     user_image = serializers.SerializerMethodField()
     user_profile_url = serializers.SerializerMethodField()
     ai_report = AiReportSerializer(read_only=True)
+    user_reports = ReportSerializer(many=True, read_only=True, source="reports")
 
     class Meta:
         model = Comment
@@ -38,6 +40,7 @@ class ModerationCommentSerializer(serializers.ModelSerializer):
             "moderator_feedback",
             "num_reports",
             "pk",
+            "user_reports",
             "user_image",
             "user_name",
             "user_profile_url",
