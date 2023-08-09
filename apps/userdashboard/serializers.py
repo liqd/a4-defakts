@@ -18,7 +18,7 @@ class ModerationCommentSerializer(serializers.ModelSerializer):
     is_modified = serializers.SerializerMethodField()
     last_edit = serializers.SerializerMethodField()
     moderator_feedback = ModeratorCommentFeedbackSerializer(read_only=True)
-    num_reports = serializers.SerializerMethodField()
+    num_reports = serializers.IntegerField(read_only=True)
     feedback_api_url = serializers.SerializerMethodField()
     user_name = serializers.SerializerMethodField()
     user_image = serializers.SerializerMethodField()
@@ -61,9 +61,6 @@ class ModerationCommentSerializer(serializers.ModelSerializer):
 
     def get_feedback_api_url(self, comment):
         return reverse("moderatorfeedback-list", kwargs={"comment_pk": comment.pk})
-
-    def get_num_reports(self, comment):
-        return comment.num_reports
 
     def get_user_name(self, comment):
         if comment.is_censored or comment.is_removed:
