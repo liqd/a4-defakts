@@ -233,7 +233,6 @@
     background-color: $gray-lightest;
     border-radius: 1rem;
     text-decoration: none;
-    text-transform: uppercase;
     font-size: $font-size-sm;
     font-weight: $font-weight-normal;
     font-family: $font-family-sans-serif;
@@ -268,7 +267,7 @@
 }
 
 .badge.a4-comments__badge--not {
-    background-color: $purple-light;
+    background-color: $orange-light;
 }
 
 .badge.a4-comments__badge--sug {
