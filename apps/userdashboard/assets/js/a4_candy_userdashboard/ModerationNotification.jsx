@@ -24,8 +24,9 @@ const translated = {
   aiClassified: django.gettext('AI'),
   postedComment: django.gettext('posted a {}comment{}'),
   notificationMenu: django.gettext('Notification menu'),
-  dummyText: django.pgettext('defakts', 'Dummy text')
-
+  dummyText: django.pgettext('defakts', 'Dummy text'),
+  reportUser: django.pgettext('defakts', 'Reported by Users'),
+  reportAi: django.pgettext('defakts', 'Reported by AI')
 }
 
 export const ModerationNotification = (props) => {
@@ -222,8 +223,8 @@ export const ModerationNotification = (props) => {
 
   function translatedReportText (reportsFound) {
     const tmp = django.ngettext(
-      'This {}comment{} has been reported 1 time since it\'s creation',
-      'This {}comment{} has been reported %s times since it\'s creation',
+      '\'s {}comment{} has been reported 1 time since it\'s creation',
+      '\'s {}comment{} has been reported %s times since it\'s creation',
       reportsFound
     )
     return (
@@ -266,11 +267,18 @@ export const ModerationNotification = (props) => {
         <li className="d-flex flex-wrap">
           {userImageDiv}
           <div>
-            <p className="mb-1">
-              {userProfileUrl ? <a href={userProfileUrl}>{userName}</a> : userName} {getLink(translated.postedComment, commentUrl)}
-            </p>
+            {numReports > 0
+              ? <p className="mb-1">
+                <i className="fas fa-exclamation-circle me-1" aria-hidden="true" />
+                <strong>{userProfileUrl ? <a href={userProfileUrl}>{userName}</a> : userName}</strong>
+                {getLink(translatedReportText(numReports), commentUrl)}
+                </p> // eslint-disable-line react/jsx-indent
+              : <p className="mb-1">
+                {userProfileUrl ? <a href={userProfileUrl}>{userName}</a> : userName} {getLink(translated.postedComment, commentUrl)}
+                </p>/* eslint-disable-line react/jsx-indent */}
             <p className="mb-1">{commentChangeLog}</p>
           </div>
+
           <div className="ms-auto">
             <div className="dropdown">
               <button
@@ -297,21 +305,22 @@ export const ModerationNotification = (props) => {
             </div>
           </div>
         </li>
+        {/* FIXME once userReport added to serializer */}
+        {numReports > 0 && !aiReport &&
+          <span className="badge a4-comments__badge a4-comments__badge--sug">
+            {translated.reportUser}
+          </span>}
 
-        {numReports > 0 &&
-          <li>
-            <p>
-              <i className="fas fa-exclamation-circle me-1" aria-hidden="true" />
-              {getLink(translatedReportText(numReports), commentUrl)}
-            </p>
-          </li>}
-        <li>
-          <p>{commentText}</p>
-        </li>
+        {aiReport &&
+          <span className="badge a4-comments__badge a4-comments__badge--not">
+            {translated.reportAi}
+          </span>}
+
+        <p>{commentText}</p>
 
         {aiReport &&
           <AiReportExplanation
-            AiReport={translated.dummyText}
+            AiReport={aiReport.explanation}
             notificationPk={notification.pk}
           />}
 

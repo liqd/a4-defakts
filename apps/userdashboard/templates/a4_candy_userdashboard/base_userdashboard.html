@@ -73,7 +73,7 @@
                     <!-- desktop -->
                     {% if request.user.organisations %}
                     <div class="d-none d-sm-block mb-5">
-                      <h2 class="fs-6">{% trans 'Initiator Organisations' %}</h2>
+                      <h2 class="fs-5">{% trans 'Initiator Organisations' %}</h2>
                       {% for organisation in request.user.organisations %}
                       <div>
                           <a class="btn btn--link text-decoration-none u-text--gray d-flex align-items-center" href="{% url 'a4dashboard:project-list' organisation_slug=organisation.slug %}">
@@ -97,7 +97,7 @@
 
                     <!-- mobile -->
                     <div class="d-sm-none mb-4">
-                        <h2 class="fs-6">
+                        <h2 class="fs-5">
                             <button class="userdashboard__collapsible"
                                 aria-expanded="true"
                                 data-bs-toggle="collapse"
@@ -137,7 +137,7 @@
 
                     <!-- desktop -->
                     <div class="d-none d-sm-block mb-5">
-                        <h2 class="fs-6">{% trans 'Organisations' %}</h2>
+                        <h2 class="fs-5">{% trans 'Organisations' %}</h2>
                         {% if view.organisations %}
                         {% for organisation in view.organisations %}
                         <a class="btn btn--link text-decoration-none u-text--gray d-flex align-items-center" href="{% url 'organisation' organisation_slug=organisation.slug %}">
@@ -167,7 +167,7 @@
                     <!-- mobile -->
                     <div class="d-sm-none mb-4">
                       {% if view.organisations %}
-                    <h2 class="fs-6">
+                    <h2 class="fs-5">
                         <button
                             class="userdashboard__collapsible"
                             aria-expanded="true"
