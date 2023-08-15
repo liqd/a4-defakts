@@ -5,6 +5,7 @@ from django.urls import reverse
 from django.utils import timezone
 from freezegun import freeze_time
 
+from apps.ai_reports.models import AiReport
 from apps.contrib import dates
 
 
@@ -48,7 +49,24 @@ def test_num_reports(
         comment["pk"]: comment["num_reports"] for comment in response.data
     }
 
+    ai_reports_received = {
+        comment["pk"]: True if comment["ai_report"] else False
+        for comment in response.data
+    }
+    ai_report_objects = AiReport.objects.prefetch_related("comment")
+
     assert num_reports_created == num_reports_received
+    assert ai_reports_created == ai_reports_received
+    for ai in ai_report_objects:
+        for comment in response.data:
+            if (
+                comment["ai_report"]
+                and comment["ai_report"]["comment"] == ai.comment.pk
+            ):
+                assert comment["ai_report"]["category"] == ai.category
+                assert comment["ai_report"]["explanation"] == ai.explanation
+                assert comment["ai_report"]["confidence"] == ai.confidence
+                assert comment["ai_report"]["is_pending"] == ai.is_pending
 
 
 @pytest.mark.django_db
