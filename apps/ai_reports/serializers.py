@@ -7,7 +7,9 @@ class AiReportSerializer(serializers.ModelSerializer):
     class Meta:
         model = AiReport
         fields = (
-            "explanation",
             "category",
+            "confidence",
+            "explanation",
+            "is_pending",
             "comment",
         )
