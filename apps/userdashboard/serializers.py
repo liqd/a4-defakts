@@ -6,6 +6,7 @@ from rest_framework.serializers import raise_errors_on_nested_writes
 from rest_framework.utils import model_meta
 
 from adhocracy4.comments.models import Comment
+from apps.ai_reports.serializers import AiReportSerializer
 from apps.contrib.dates import get_date_display
 from apps.moderatorfeedback.serializers import ModeratorCommentFeedbackSerializer
 
@@ -21,6 +22,7 @@ class ModerationCommentSerializer(serializers.ModelSerializer):
     user_name = serializers.SerializerMethodField()
     user_image = serializers.SerializerMethodField()
     user_profile_url = serializers.SerializerMethodField()
+    ai_report = AiReportSerializer(read_only=True)
 
     class Meta:
         model = Comment
@@ -39,6 +41,7 @@ class ModerationCommentSerializer(serializers.ModelSerializer):
             "user_image",
             "user_name",
             "user_profile_url",
+            "ai_report",
         ]
 
     def get_comment_url(self, instance):
