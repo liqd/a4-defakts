@@ -37,7 +37,8 @@ const config = {
   transformIgnorePatterns: [
   // transpile all node_modules, not great?
     '/node_modules/(?!(.*)/)'
-  ]
+  ],
+  setupFiles: ['./jest.setup.js']
 }
 
 module.exports = config
