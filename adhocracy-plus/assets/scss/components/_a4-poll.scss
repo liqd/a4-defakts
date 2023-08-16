@@ -148,11 +148,9 @@ $checkbox-size: 20px;
 }
 
 // User answer view: Open and Other answers
-.poll-slider__item {
-    padding-top: $spacer;
-}
 
 .poll-slider__answer {
+    text-align: start;
     padding-bottom: 1.5 * $spacer;
     overflow-wrap: break-word;
 
@@ -163,22 +161,28 @@ $checkbox-size: 20px;
 }
 
 .poll-slider__count {
+    text-align: end;
     font-size: $font-size-sm;
     color: $text-color-gray;
-    position: absolute;
     bottom: 0;
+
+    &--spaced {
+        position: absolute;
+        right: 6.5 * $spacer;
+        bottom: 0.75 * $spacer;
+    }
 }
 
 .spinner-border {
     margin-right: 3 * $spacer;
 }
 
+.poll-slider--border {
+    border-bottom: 1px solid $brand-primary;
+}
+
 .poll-slider {
     position: relative;
-
-    background-color: $brand-tertiary-tint;
-    margin-bottom: $spacer;
-    border-radius: 0.3 * $spacer;
 
     // slick overwrites - nested for specificity
     .slick-prev {
@@ -197,7 +201,7 @@ $checkbox-size: 20px;
 
         position: absolute;
         top: revert;
-        bottom: 0;
+        bottom: $spacer;
         text-align: center;
         width: 25px;
         height: 25px;
