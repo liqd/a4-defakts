@@ -32,6 +32,6 @@ test('Test functionality of Read More <AiReportExplanation>', () => {
   const button = screen.getByRole('button')
   expect(button).toBeTruthy()
   fireEvent.click(button)
-  const readLess = screen.getByText('Read less')
+  const readLess = screen.getByText('Show less')
   expect(readLess).toBeTruthy()
 })
