@@ -28,7 +28,7 @@ export const ModerationNotificationActionsBar = (props) => {
   } = props
 
   return (
-    <li className="d-flex flex-wrap justify-content-between">
+    <li className="d-flex flex-wrap justify-content-between mt-3">
       <button
         id={'moderation-notification-actions-bar-button-reply-' + itemPk}
         className="btn px-0 userdashboard-mod-notification__btn"
