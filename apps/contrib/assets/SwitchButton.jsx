@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 
 export const SwitchButton = (props) => {
-  const [isChecked, setIsChecked] = useState(false)
+  const [isChecked, setIsChecked] = useState(props.initiallyChecked || false)
 
   const toggleIsChecked = () => {
     setIsChecked(!isChecked)

@@ -12,25 +12,30 @@ exports[`Snapshot to confirm Read Less is rendered after clicking Read More butt
         aria-hidden="True"
         class="fas fa-exclamation-circle text-danger pt-1 pe-2"
       />
-      <p
+      <div
         class="pe-4"
       >
-        This comment contains disinformation. Defakts uses an Artificial Intelligence to scan content for disinformation. Disinformation often shows certain characteristics that allow for a reliable identification. 
-        This is the ai report 
-        <button
-          aria-label="Click to hide the AI explanation for reporting this comment."
-          class="btn--link text-danger"
-          type="button"
-        >
-          Read less
-        </button>
-      </p>
+        <p>
+          This comment contains disinformation. Defakts uses an Artificial Intelligence to scan content for disinformation. Disinformation often shows certain characteristics that allow for a reliable identification.
+        </p>
+        <p>
+          This is the ai report
+           
+          <button
+            aria-label="Click to hide the AI explanation for reporting this comment."
+            class="btn--link text-danger"
+            type="button"
+          >
+            Show less
+          </button>
+        </p>
+      </div>
     </div>
     <div
       class="d-flex text-start"
     >
       <button
-        aria-checked="false"
+        aria-checked="true"
         aria-labelledby="switch-id-undefined"
         class="btn-switch"
         role="switch"
@@ -45,7 +50,7 @@ exports[`Snapshot to confirm Read Less is rendered after clicking Read More butt
         <span
           id="switch-id-undefined"
         >
-          Show info to users
+          Hide info from users
         </span>
       </button>
     </div>
@@ -68,7 +73,8 @@ exports[`Snapshot to confirm Read More is rendered <AiReportExplanation> 1`] = `
       <p
         class="pe-4"
       >
-        This comment contains disinformation. Defakts uses an Artificial Intelligence to scan content for disinformation. Disinformation often shows certain characteristics that allow for a reliable identification. 
+        This comment contains disinformation. Defakts uses an Artificial Intelligence to scan content for disinformation. Disinformation often shows certain characteristics that allow for a reliable identification.
+         
         <button
           aria-label="Click to view the AI explanation for reporting this comment."
           class="btn--link text-danger"
@@ -82,7 +88,7 @@ exports[`Snapshot to confirm Read More is rendered <AiReportExplanation> 1`] = `
       class="d-flex text-start"
     >
       <button
-        aria-checked="false"
+        aria-checked="true"
         aria-labelledby="switch-id-undefined"
         class="btn-switch"
         role="switch"
@@ -97,7 +103,7 @@ exports[`Snapshot to confirm Read More is rendered <AiReportExplanation> 1`] = `
         <span
           id="switch-id-undefined"
         >
-          Show info to users
+          Hide info from users
         </span>
       </button>
     </div>

@@ -24,7 +24,6 @@ const translated = {
   aiClassified: django.gettext('AI'),
   postedComment: django.gettext('posted a {}comment{}'),
   notificationMenu: django.gettext('Notification menu'),
-  dummyText: django.pgettext('defakts', 'Dummy text'),
   reportUser: django.pgettext('defakts', 'Reported by Users'),
   reportAi: django.pgettext('defakts', 'Reported by AI')
 }
