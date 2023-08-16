@@ -5,6 +5,7 @@ import { AiReportExplanation } from './AiReportExplanation'
 import { ModerationFeedbackForm } from './ModerationFeedbackForm'
 import { ModerationFeedback } from './ModerationFeedback'
 import { ModerationNotificationActionsBar } from './ModerationNotificationActionsBar'
+import { UserReport } from './UserReport'
 import { alert as Alert } from 'adhocracy4'
 
 const alertTime = 6000
@@ -244,6 +245,8 @@ export const ModerationNotification = (props) => {
   } = notification
   const markReadText = django.gettext('Mark as read')
   const markUnreadText = django.gettext('Mark as unread')
+  // FIXME after userReport added to serializer is can be added above and code should work
+  const userReport = ['Sollicitudin gravida purus et dolor vel rutrum varius adipiscing metus dolor quam gravida vivamus ac bibendum magna tincidunt mi nec elit phasellus nisl id erat.', 'This is another of those']
 
   let userImageDiv
   if (userImage) {
@@ -304,7 +307,7 @@ export const ModerationNotification = (props) => {
             </div>
           </div>
         </li>
-        {/* FIXME once userReport added to serializer */}
+        {/* FIXME once userReport added to serializer see below */}
         {numReports > 0 && !aiReport &&
           <span className="badge a4-comments__badge a4-comments__badge--sug">
             {translated.reportUser}
@@ -316,6 +319,13 @@ export const ModerationNotification = (props) => {
           </span>}
 
         <p>{commentText}</p>
+
+        {/* FIXME once userReport added to serializer */}
+        {numReports > 0 &&
+          <UserReport
+            userReport={userReport}
+            sliderClass={aiReport ? 'poll-slider poll-slider--border' : 'poll-slider'}
+          />}
 
         {aiReport &&
           <AiReportExplanation
