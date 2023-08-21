@@ -104,19 +104,19 @@ def test_last_edit(apiclient, report_factory, comment_factory, idea):
 def test_fields(
     apiclient, report_factory, comment_factory, idea, moderator_comment_feedback_factory
 ):
-    comments = [
+    comments_created = [
         comment_factory(content_object=idea, is_moderator_marked=True),
         comment_factory(content_object=idea, is_blocked=True),
         comment_factory(content_object=idea, is_removed=True),
     ]
 
-    report_factory(content_object=comments[0])
-    report_factory.create_batch(size=2, content_object=comments[1])
-    feedback = moderator_comment_feedback_factory(comment=comments[2])
+    report_factory(content_object=comments_created[0])
+    report_factory.create_batch(size=2, content_object=comments_created[1])
+    feedback = moderator_comment_feedback_factory(comment=comments_created[2])
 
-    with freeze_time(comments[1].created + timedelta(minutes=3)):
-        comments[1].modified = timezone.now()
-        comments[1].save()
+    with freeze_time(comments_created[1].created + timedelta(minutes=3)):
+        comments_created[1].modified = timezone.now()
+        comments_created[1].save()
 
     project = idea.project
     moderator = project.moderators.first()
@@ -126,71 +126,85 @@ def test_fields(
     assert response.status_code == 200
     assert len(response.data) == 3
 
-    received_data = []
-    for comment in comments:
+    comments_received = []
+    for comment in comments_created:
         for comment_data in response.data:
             if comment_data["pk"] == comment.pk:
-                received_data.append(comment_data)
+                comments_received.append(comment_data)
                 break
 
-    for data, comment in zip(received_data, comments):
+    for data, comment in zip(comments_received, comments_created):
         assert len(data["user_reports"]) == comment.reports.count()
 
-    assert received_data[0]["comment"] == comments[0].comment
-    assert received_data[0]["comment_url"] == comments[0].get_absolute_url()
-    assert received_data[0]["is_unread"]
-    assert not received_data[0]["is_blocked"]
-    assert received_data[0]["is_moderator_marked"]
-    assert not received_data[0]["is_modified"]
-    assert received_data[0]["last_edit"] == dates.get_date_display(comments[0].created)
-    assert received_data[0]["moderator_feedback"] is None
-    assert received_data[0]["num_reports"] == 1
-    assert received_data[0]["pk"] == comments[0].pk
-    assert received_data[0]["feedback_api_url"] == reverse(
-        "moderatorfeedback-list", kwargs={"comment_pk": comments[0].pk}
+    assert comments_received[0]["comment"] == comments_created[0].comment
+    assert comments_received[0]["comment_url"] == comments_created[0].get_absolute_url()
+    assert comments_received[0]["is_unread"]
+    assert not comments_received[0]["is_blocked"]
+    assert comments_received[0]["is_moderator_marked"]
+    assert not comments_received[0]["is_modified"]
+    assert comments_received[0]["last_edit"] == dates.get_date_display(
+        comments_created[0].created
     )
-    assert received_data[0]["user_image"] == comments[0].creator.avatar_fallback
-    assert received_data[0]["user_name"] == comments[0].creator.username
+    assert comments_received[0]["moderator_feedback"] is None
+    assert comments_received[0]["num_reports"] == 1
+    assert comments_received[0]["pk"] == comments_created[0].pk
+    assert comments_received[0]["feedback_api_url"] == reverse(
+        "moderatorfeedback-list", kwargs={"comment_pk": comments_created[0].pk}
+    )
     assert (
-        received_data[0]["user_profile_url"] == comments[0].creator.get_absolute_url()
+        comments_received[0]["user_image"]
+        == comments_created[0].creator.avatar_fallback
+    )
+    assert comments_received[0]["user_name"] == comments_created[0].creator.username
+    assert (
+        comments_received[0]["user_profile_url"]
+        == comments_created[0].creator.get_absolute_url()
     )
 
-    assert received_data[1]["comment"] == comments[1].comment
-    assert received_data[1]["comment_url"] == comments[1].get_absolute_url()
-    assert received_data[1]["is_unread"]
-    assert received_data[1]["is_blocked"]
-    assert not received_data[1]["is_moderator_marked"]
-    assert received_data[1]["is_modified"]
-    assert received_data[1]["last_edit"] == dates.get_date_display(comments[1].modified)
-    assert received_data[1]["moderator_feedback"] is None
-    assert received_data[1]["num_reports"] == 2
-    assert received_data[1]["pk"] == comments[1].pk
-    assert received_data[1]["feedback_api_url"] == reverse(
-        "moderatorfeedback-list", kwargs={"comment_pk": comments[1].pk}
+    assert comments_received[1]["comment"] == comments_created[1].comment
+    assert comments_received[1]["comment_url"] == comments_created[1].get_absolute_url()
+    assert comments_received[1]["is_unread"]
+    assert comments_received[1]["is_blocked"]
+    assert not comments_received[1]["is_moderator_marked"]
+    assert comments_received[1]["is_modified"]
+    assert comments_received[1]["last_edit"] == dates.get_date_display(
+        comments_created[1].modified
     )
-    assert received_data[1]["user_image"] == comments[1].creator.avatar_fallback
-    assert received_data[1]["user_name"] == comments[1].creator.username
+    assert comments_received[1]["moderator_feedback"] is None
+    assert comments_received[1]["num_reports"] == 2
+    assert comments_received[1]["pk"] == comments_created[1].pk
+    assert comments_received[1]["feedback_api_url"] == reverse(
+        "moderatorfeedback-list", kwargs={"comment_pk": comments_created[1].pk}
+    )
     assert (
-        received_data[1]["user_profile_url"] == comments[1].creator.get_absolute_url()
+        comments_received[1]["user_image"]
+        == comments_created[1].creator.avatar_fallback
+    )
+    assert comments_received[1]["user_name"] == comments_created[1].creator.username
+    assert (
+        comments_received[1]["user_profile_url"]
+        == comments_created[1].creator.get_absolute_url()
     )
 
-    assert received_data[2]["comment"] == comments[2].comment == ""
-    assert received_data[2]["comment_url"] == comments[2].get_absolute_url()
-    assert received_data[2]["is_unread"]
-    assert not received_data[2]["is_blocked"]
-    assert not received_data[2]["is_moderator_marked"]
-    assert not received_data[2]["is_modified"]
-    assert received_data[2]["last_edit"] == dates.get_date_display(comments[2].created)
-    assert received_data[2]["moderator_feedback"] is not None
+    assert comments_received[2]["comment"] == comments_created[2].comment == ""
+    assert comments_received[2]["comment_url"] == comments_created[2].get_absolute_url()
+    assert comments_received[2]["is_unread"]
+    assert not comments_received[2]["is_blocked"]
+    assert not comments_received[2]["is_moderator_marked"]
+    assert not comments_received[2]["is_modified"]
+    assert comments_received[2]["last_edit"] == dates.get_date_display(
+        comments_created[2].created
+    )
+    assert comments_received[2]["moderator_feedback"] is not None
     assert (
-        received_data[2]["moderator_feedback"]["feedback_text"]
+        comments_received[2]["moderator_feedback"]["feedback_text"]
         == feedback.feedback_text
     )
-    assert received_data[2]["num_reports"] == 0
-    assert received_data[2]["pk"] == comments[2].pk
-    assert received_data[2]["feedback_api_url"] == reverse(
-        "moderatorfeedback-list", kwargs={"comment_pk": comments[2].pk}
+    assert comments_received[2]["num_reports"] == 0
+    assert comments_received[2]["pk"] == comments_created[2].pk
+    assert comments_received[2]["feedback_api_url"] == reverse(
+        "moderatorfeedback-list", kwargs={"comment_pk": comments_created[2].pk}
     )
-    assert received_data[2]["user_image"] is None
-    assert received_data[2]["user_name"] == "unknown user"
-    assert received_data[2]["user_profile_url"] == ""
+    assert comments_received[2]["user_image"] is None
+    assert comments_received[2]["user_name"] == "unknown user"
+    assert comments_received[2]["user_profile_url"] == ""
