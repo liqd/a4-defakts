@@ -241,12 +241,11 @@ export const ModerationNotification = (props) => {
     user_name: userName,
     user_profile_url: userProfileUrl,
     num_reports: numReports,
-    ai_report: aiReport
+    ai_report: aiReport,
+    user_reports: userReports
   } = notification
   const markReadText = django.gettext('Mark as read')
   const markUnreadText = django.gettext('Mark as unread')
-  // FIXME after userReport added to serializer is can be added above and code should work
-  const userReport = ['Sollicitudin gravida purus et dolor vel rutrum varius adipiscing metus dolor quam gravida vivamus ac bibendum magna tincidunt mi nec elit phasellus nisl id erat.', 'This is another of those']
 
   let userImageDiv
   if (userImage) {
@@ -333,7 +332,7 @@ export const ModerationNotification = (props) => {
 
         {numReports > 0 &&
           <UserReport
-            userReport={userReport}
+            userReport={userReports}
             sliderClass={aiReport ? 'poll-slider poll-slider--border' : 'poll-slider'}
           />}
 
