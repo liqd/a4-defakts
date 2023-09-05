@@ -19,7 +19,8 @@ const mockedNotification = {
   pk: 2,
   user_image: '/static/images/avatar-02.svg',
   user_name: 'user',
-  user_profile_url: '/profile/user/'
+  user_profile_url: '/profile/user/',
+  user_reports: []
 }
 
 /** MOCK DEFINITIONS END **/
