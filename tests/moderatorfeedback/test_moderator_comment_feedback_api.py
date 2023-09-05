@@ -33,7 +33,7 @@ def test_moderator_and_ai_report_added_in_comment(
     )
     assert comment.ai_report.explanation == ai_report.explanation
 
-    assert ai_report.explanation in response.data["ai_report"]
+    assert ai_report.explanation == response.data["ai_report"]["explanation"]
     assert response.status_code == 200
 
 

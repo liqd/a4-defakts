@@ -2,6 +2,7 @@ from rest_framework import serializers
 
 from adhocracy4.comments.models import Comment
 from adhocracy4.comments_async import serializers as a4_serializers
+from apps.ai_reports.serializers import AiReportSerializer
 from apps.contrib.dates import get_date_display
 from apps.moderatorfeedback.models import ModeratorCommentFeedback
 
@@ -34,7 +35,7 @@ class ModeratorCommentFeedbackSerializer(serializers.ModelSerializer):
 
 class CommentWithFeedbackSerializer(a4_serializers.CommentSerializer):
     moderator_feedback = ModeratorCommentFeedbackSerializer(read_only=True)
-    ai_report = serializers.StringRelatedField(read_only=True)
+    ai_report = AiReportSerializer(read_only=True)
 
     class Meta:
         model = Comment
