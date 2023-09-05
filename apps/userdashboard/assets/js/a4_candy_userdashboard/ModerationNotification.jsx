@@ -307,8 +307,7 @@ export const ModerationNotification = (props) => {
             </div>
           </div>
         </li>
-        {/* FIXME once userReport added to serializer see below */}
-        {numReports > 0 && !aiReport &&
+        {numReports > 0 &&
           <span className="badge a4-comments__badge a4-comments__badge--sug">
             {translated.reportUser}
           </span>}
@@ -320,7 +319,6 @@ export const ModerationNotification = (props) => {
 
         <p>{commentText}</p>
 
-        {/* FIXME once userReport added to serializer */}
         {numReports > 0 &&
           <UserReport
             userReport={userReport}
