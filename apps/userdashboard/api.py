@@ -1,4 +1,5 @@
 from django.db.models import Count
+from django.http import JsonResponse
 from django.shortcuts import get_object_or_404
 from django_filters.rest_framework import BooleanFilter
 from django_filters.rest_framework import DjangoFilterBackend
@@ -83,6 +84,17 @@ class ModerationCommentViewSet(
             NotifyCreatorOnModeratorBlocked.send(self.get_object())
 
         return super().update(request, *args, **kwargs)
+
+    @action(detail=True)
+    def toggle_show_ai_report(self, request, **kwargs):
+        comment = self.get_object()
+        if hasattr(comment, "ai_report"):
+            comment.ai_report.show_in_discussion = (
+                not comment.ai_report.show_in_discussion
+            )
+            comment.ai_report.save()
+            return JsonResponse(status=200, data={})
+        return JsonResponse(status=400, data={})
 
     @action(detail=True)
     def mark_read(self, request, **kwargs):

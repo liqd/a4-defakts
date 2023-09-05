@@ -6,8 +6,8 @@ from rest_framework.serializers import raise_errors_on_nested_writes
 from rest_framework.utils import model_meta
 
 from adhocracy4.comments.models import Comment
-from apps.ai_reports.serializers import AiReportSerializer
 from adhocracy4.reports.api import ReportSerializer
+from apps.ai_reports.serializers import AiReportSerializer
 from apps.contrib.dates import get_date_display
 from apps.moderatorfeedback.serializers import ModeratorCommentFeedbackSerializer
 
