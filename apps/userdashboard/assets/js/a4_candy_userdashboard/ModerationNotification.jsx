@@ -1,12 +1,11 @@
 import React, { useState } from 'react'
 import django from 'django'
 import api from './api'
-import { AiReportExplanation } from './AiReportExplanation'
 import { ModerationFeedbackForm } from './ModerationFeedbackForm'
 import { ModerationFeedback } from './ModerationFeedback'
 import { ModerationNotificationActionsBar } from './ModerationNotificationActionsBar'
 import { UserReport } from './UserReport'
-import { alert as Alert } from 'adhocracy4'
+import { aiReport as AiReport, alert as Alert } from 'adhocracy4'
 
 const alertTime = 6000
 
@@ -26,7 +25,9 @@ const translated = {
   postedComment: django.gettext('posted a {}comment{}'),
   notificationMenu: django.gettext('Notification menu'),
   reportUser: django.pgettext('defakts', 'Reported by Users'),
-  reportAi: django.pgettext('defakts', 'Reported by AI')
+  reportAi: django.pgettext('defakts', 'Reported by AI'),
+  reportShown: django.pgettext('defakts', 'Report displayed in comment list'),
+  reportHidden: django.pgettext('defakts', 'Report hidden in comment list')
 }
 
 export const ModerationNotification = (props) => {
@@ -219,6 +220,21 @@ export const ModerationNotification = (props) => {
     }
   }
 
+  async function toggleShowAiReport () {
+    const [, error] =
+      await api.fetch({
+        url: props.apiUrl + 'toggle_show_ai_report/' + props.getUrlParams(),
+        method: 'GET'
+      })
+    if (error) {
+      setAlert({
+        type: 'error',
+        message: error.message,
+        timeInMs: alertTime
+      })
+    }
+  }
+
   // **** End notification methods ****
 
   function translatedReportText (reportsFound) {
@@ -337,8 +353,9 @@ export const ModerationNotification = (props) => {
           />}
 
         {aiReport &&
-          <AiReportExplanation
-            AiReport={aiReport.explanation}
+          <AiReport
+            Report={aiReport}
+            toggleShowAiReport={() => toggleShowAiReport()}
             notificationPk={notification.pk}
           />}
 
