@@ -6,7 +6,7 @@ exports[`Snapshot to confirm Read Less is rendered after clicking Read More butt
     class="alert alert--danger mb-4"
   >
     <div
-      class="d-flex text-start mb-4"
+      class="d-flex text-start fs-6 mb-4"
     >
       <i
         aria-hidden="True"
@@ -64,7 +64,7 @@ exports[`Snapshot to confirm Read More is rendered <AiReportExplanation> 1`] = `
     class="alert alert--danger mb-4"
   >
     <div
-      class="d-flex text-start mb-4"
+      class="d-flex text-start fs-6 mb-4"
     >
       <i
         aria-hidden="True"

@@ -34,7 +34,7 @@ export const AiReportExplanation = ({ AiReport, notificationPk }) => {
 
   return (
     <li className="alert alert--danger mb-4">
-      <div className="d-flex text-start mb-4">
+      <div className="d-flex text-start fs-6 mb-4">
         <i
           className="fas fa-exclamation-circle text-danger pt-1 pe-2"
           aria-hidden="True"
