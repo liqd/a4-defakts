@@ -9,6 +9,7 @@ class AiReport(TimeStampedModel):
     category = models.CharField(max_length=50)
     explanation = models.TextField()
     confidence = models.FloatField(default=0)
+    show_in_discussion = models.BooleanField(default=True)
     comment = models.OneToOneField(
         Comment,
         on_delete=models.CASCADE,

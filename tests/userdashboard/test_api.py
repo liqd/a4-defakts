@@ -105,6 +105,35 @@ def test_moderator_can_mark_comment_read(apiclient, comment_factory, idea):
 
 
 @pytest.mark.django_db
+def test_moderator_can_toggle_ai_report(
+    apiclient, ai_report_factory, comment_factory, idea
+):
+    comment = comment_factory(content_object=idea)
+    ai_report_factory(comment=comment)
+    project = idea.project
+    moderator = project.moderators.first()
+    apiclient.login(username=moderator.email, password="password")
+
+    url = reverse(
+        "moderationcomments-detail", kwargs={"project_pk": project.pk, "pk": comment.pk}
+    )
+    response = apiclient.get(url)
+    assert response.status_code == 200
+    assert comment.ai_report.show_in_discussion
+
+    url_set_show_ai_report = url + "toggle_show_ai_report/"
+    response = apiclient.get(url_set_show_ai_report)
+    assert response.status_code == 200
+    comment.refresh_from_db()
+    assert not comment.ai_report.show_in_discussion
+
+    response = apiclient.get(url_set_show_ai_report)
+    assert response.status_code == 200
+    comment.refresh_from_db()
+    assert comment.ai_report.show_in_discussion
+
+
+@pytest.mark.django_db
 def test_queryset_and_filters(
     apiclient,
     report_factory,
