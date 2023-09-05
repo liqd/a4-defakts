@@ -14,3 +14,4 @@ class AiReportFactory(factory.django.DjangoModelFactory):
     explanation = factory.Faker("sentence", nb_words=6)
     confidence = random.random()
     comment = factory.SubFactory(CommentFactory)
+    show_in_discussion = True

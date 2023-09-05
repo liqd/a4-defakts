@@ -12,4 +12,5 @@ class AiReportSerializer(serializers.ModelSerializer):
             "explanation",
             "is_pending",
             "comment",
+            "show_in_discussion",
         )
