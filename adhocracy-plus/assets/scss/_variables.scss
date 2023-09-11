@@ -9,7 +9,7 @@ $brand-tertiary: $brand-primary !default;
 $brand-success: #2fae7a !default;
 $brand-info: $brand-primary !default; // $brand-primary from platform.scss
 $brand-warning: #ffc107 !default;
-$brand-danger: #a72b1e !default;
+$brand-danger: $brand-primary !default;
 
 $primary:       $brand-primary !default;
 $secondary:     $brand-secondary !default;
