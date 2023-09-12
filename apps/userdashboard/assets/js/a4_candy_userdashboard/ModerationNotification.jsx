@@ -306,7 +306,7 @@ export const ModerationNotification = (props) => {
             </div>
           </div>
         </li>
-        {numReports > 0 &&
+        {userReports.length > 0 &&
           <span className="badge a4-comments__badge a4-comments__badge--sug">
             {translated.reportUser}
           </span>}
@@ -318,7 +318,7 @@ export const ModerationNotification = (props) => {
 
         <p>{commentText}</p>
 
-        {numReports > 0 &&
+        {userReports.length > 0 &&
           <UserReport
             userReport={userReports}
             sliderClass={aiReport ? 'poll-slider poll-slider--border' : 'poll-slider'}
