@@ -23,7 +23,7 @@ export const UserReport = (props) => {
     return (
       <p>
         {splitted[0]}
-        <b>{splitted[1]}</b>
+        <b>{userName}</b>
         {splitted[2]}
       </p>
     )
