@@ -41,12 +41,6 @@
     font-weight: bold;
 }
 
-// so it doesn't look misallighned when menu open
-.header-upper__mobile-toggle.show {
-    z-index: 1001;
-    background: transparent;
-}
-
 .header-upper__mobile-toggle:after {
     z-index: 5;
     font-family: "Font Awesome 5 Free", sans-serif;

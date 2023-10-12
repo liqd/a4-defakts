@@ -146,16 +146,32 @@
 
 .a4-comments__action-bar__btn {
     margin-left: 0.2 * $spacer !important;
+    text-decoration: underline;
 
     @extend .btn--small;
 
     &:first-child {
         margin-left: 0 !important;
     }
+
+    &:hover {
+        text-decoration: none;
+    }
 }
 
 .a4-comments__border--highlighted {
     border-left: 2px solid $brand-primary;
+}
+
+.btn.btn--none.a4-comments__read-btn {
+    text-decoration: underline;
+    margin-bottom: 0.5 * $spacer;
+
+    &:hover,
+    &:active {
+        text-decoration: none;
+        background-color: inherit;
+    }
 }
 
 .a4-comments__text,
