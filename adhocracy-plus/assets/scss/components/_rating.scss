@@ -46,7 +46,7 @@
 }
 
 .rating-up {
-    @include rating-button($brand-primary);
+    @include rating-button($brand-success);
 }
 
 .rating-down {
