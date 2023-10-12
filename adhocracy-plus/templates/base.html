@@ -7,9 +7,18 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>{% block title %}{{ settings.a4_candy_cms_settings.OrganisationSettings.platform_name }}{% if ORGANISATION %}/{{ ORGANISATION.name }}{% endif %}{% endblock %}</title>
+
+    <!-- Favicons -->
+    <meta name="msapplication-TileColor" content="#de4b31">
+    <meta name="msapplication-config" content="{% static 'images/browserconfig.xml' %}">
+    <meta name="theme-color" content="#ffffff">
+    <link rel="icon" type="image/x-icon" href="{% static 'images/favicon.ico' %}">
     <link rel="icon" type="image/png" sizes="32x32" href="{% static 'images/favicon-32x32.png' %}">
     <link rel="icon" type="image/png" sizes="96x96" href="{% static 'images/favicon-96x96.png' %}">
     <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/favicon-16x16.png' %}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'images/apple-touch-icon.png' %}">
+    <link rel="manifest" href="{% static 'images/manifest.json' %}">
+
     {% block extra_css %}
         {# Override this in templates to add extra stylesheets #}
     {% endblock %}
