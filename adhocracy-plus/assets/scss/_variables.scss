@@ -6,10 +6,10 @@ $brand-secondary: #000000 !default;
 $brand-tertiary: $brand-primary !default;
 
 /* Don't use variables but hex-values here as they should not be overwritten on organisation pages */
-$brand-success: #2fae7a !default;
+$brand-success: #23865e !default;
 $brand-info: $brand-primary !default; // $brand-primary from platform.scss
 $brand-warning: #ffc107 !default;
-$brand-danger: $brand-primary !default;
+$brand-danger: #9b1d20 !default;
 
 $primary:       $brand-primary !default;
 $secondary:     $brand-secondary !default;

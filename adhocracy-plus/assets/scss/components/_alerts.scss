@@ -21,13 +21,13 @@ $messages-margin-bottom: 25px;
 }
 
 .alert--success {
-    background-color: lighten($brand-success, 45);
+    background-color: lighten($brand-success, 55);
     color: $text-color;
 }
 
 .alert--error,
 .alert--danger {
-    background-color: lighten($brand-danger, 44);
+    background-color: lighten($brand-danger, 55);
     color: $text-color;
 }
 
