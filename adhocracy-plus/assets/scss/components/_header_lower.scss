@@ -21,6 +21,13 @@
     box-shadow: 0 0 8px 0 $shadow;
 }
 
+.header-lower__brand {
+    z-index: 1;
+    border-left: 2px solid $brand-primary;
+    border-top: 2px solid $brand-primary;
+    border-right: 2px solid $brand-primary;
+}
+
 .header-lower__position--right {
     .header-lower__logo-box {
         margin-left: auto;
@@ -29,6 +36,10 @@
         @media (min-width: $breakpoint) {
             margin-right: 0;
         }
+    }
+
+    .header-lower__brand {
+        border: none;
     }
 }
 

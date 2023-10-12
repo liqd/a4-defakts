@@ -4,6 +4,7 @@
 <div class="header-lower__position">
     <div class="col-md-10 offset-md-1 ps-3 ps-md-0">
         <nav class="header-lower__nav">
+            {% url 'organisation' organisation_slug=organisation.slug as organisation_url %}
 
             {% if organisation.logo %}
               {% url 'organisation' organisation_slug=organisation.slug as organisation_url %}
@@ -17,8 +18,6 @@
                 </a>
               </div>
             {% endif %}
-
-            {% url 'organisation' organisation_slug=organisation.slug as organisation_url %}
 
             {% if request.get_full_path == organisation_url or '/information' in request.get_full_path %}
                 <ul class="header-lower__nav-list--md d-none d-sm-block">

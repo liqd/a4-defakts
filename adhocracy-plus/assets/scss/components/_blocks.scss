@@ -43,9 +43,14 @@ $block-padding-md: 7.5 * $padding;
 // multi col cta with content styling
 .block-columns_cta {
     text-align: center;
+    padding: $spacer;
 
     .block-row-1 {
         justify-content: center;
+    }
+
+    @media screen and (min-width: $breakpoint) {
+        padding: initial;
     }
 
     .block-col_cta-btn {
@@ -172,7 +177,7 @@ $block-padding-md: 7.5 * $padding;
 }
 
 .block-paragraph {
-    @extend .py-3;
+    padding: $spacer;
 }
 
 .block-download {
