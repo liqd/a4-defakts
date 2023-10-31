@@ -16,6 +16,10 @@
 .footer__description a {
     font-family: $font-family-serif;
     color: contrast-color($bg-dark);
+
+    img {
+        height: $font-size-md;
+    }
 }
 
 .footer__no-banner > .row {
