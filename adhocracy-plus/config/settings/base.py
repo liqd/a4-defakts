@@ -691,3 +691,4 @@ CKEDITOR_5_CONFIGS = {
         },
     },
 }
+XAI_API_URL = ""

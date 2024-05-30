@@ -8,26 +8,26 @@ class AiReportAdmin(admin.ModelAdmin):
     model = AiReport
     list_display = (
         "__str__",
-        "category",
+        "label",
         "confidence",
         "is_pending",
         "comment",
     )
     list_filter = (
         "is_pending",
-        "category",
+        "label",
         "confidence",
         "comment",
     )
     search_fields = (
-        "category",
+        "label",
         "explanation",
         "confidence",
         "is_pending",
     )
     fields = (
         "is_pending",
-        "category",
+        "label",
         "explanation",
         "confidence",
         "comment",
