@@ -6,9 +6,9 @@ from adhocracy4.models.base import TimeStampedModel
 
 class AiReport(TimeStampedModel):
     is_pending = models.BooleanField(default=True)
-    category = models.CharField(max_length=50)
-    explanation = models.TextField()
-    confidence = models.FloatField(default=0)
+    label = models.JSONField()
+    explanation = models.JSONField()
+    confidence = models.JSONField()
     show_in_discussion = models.BooleanField(default=True)
     comment = models.OneToOneField(
         Comment,

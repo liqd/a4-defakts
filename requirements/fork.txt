@@ -1,1 +1,3 @@
 # requirements needed in this fork, but not a+
+backoff==2.2.1
+httpx==0.27.0
