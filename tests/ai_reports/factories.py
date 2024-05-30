@@ -10,8 +10,8 @@ class AiReportFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = AiReport
 
-    category = factory.Faker("word")
-    explanation = factory.Faker("sentence", nb_words=6)
-    confidence = random.random()
+    label = factory.List([factory.Faker("word") for _ in range(3)])
+    explanation = {"xai explanation": [["first word", 0.0123]]}
+    confidence = [random.random() for _ in range(3)]
     comment = factory.SubFactory(CommentFactory)
     show_in_discussion = True
