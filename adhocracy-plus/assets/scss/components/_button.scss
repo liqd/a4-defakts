@@ -104,6 +104,22 @@
     }
 }
 
+.btn.btn--transparent--light {
+    @include button($brand-tertiary, $text-color, $body-bg, 2%);
+
+    background-color: transparent;
+    border-color: $border-color;
+
+    &:focus,
+    &:hover,
+    &:active,
+    &:focus-within {
+        text-decoration: underline;
+        border-color: $border-color;
+    }
+
+}
+
 .btn.btn--transparent--inverted {
     @include button($print-black, $brand-primary, $body-bg, 7%);
     background-color: transparent;
