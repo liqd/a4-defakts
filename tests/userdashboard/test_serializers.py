@@ -1,7 +1,7 @@
-import json
 from datetime import timedelta
 
 import pytest
+from django.conf import settings
 from django.urls import reverse
 from django.utils import timezone
 from freezegun import freeze_time
@@ -64,10 +64,13 @@ def test_num_reports(
                 comment["ai_report"]
                 and comment["ai_report"]["comment"] == ai.comment.pk
             ):
-                assert comment["ai_report"]["label"] == ai.label
-                assert json.loads(comment["ai_report"]["explanation"]) == ai.explanation
+                assert comment["ai_report"]["label"] == [
+                    (label, settings.XAI_LABELS[label]) for label in ai.label
+                ]
+                assert comment["ai_report"]["explanation"] == ai.explanation
                 assert comment["ai_report"]["confidence"] == ai.confidence
                 assert comment["ai_report"]["is_pending"] == ai.is_pending
+                assert comment["ai_report"]["faq_url"] == ""
 
 
 @pytest.mark.django_db
