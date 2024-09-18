@@ -671,3 +671,21 @@ CKEDITOR_5_CONFIGS = {
     },
 }
 XAI_API_URL = ""
+
+XAI_LABELS = {
+    "infoincon": _("inconsistent"),
+    "infonewinfo": _("uninformative"),
+    "psychpolar": _("polarizing"),
+    "psychemo": _("emotionalized"),
+    "psychsensa": _("sensational"),
+    "psychabas": _("abasing"),
+    "psychtopic": _("topical / brand new"),
+    "authvague": _("vaguely phrased"),
+    "authrefer": _("not proven"),
+    "typpseudo": _("pseudoscientific"),
+    "typforged": _("forged content"),
+    "typfalcontex": _("false context"),
+    "typconspir": _("conspiracy theory"),
+    "typpropa": _("propaganda"),
+    "typopinion": _("not fact based"),
+}
