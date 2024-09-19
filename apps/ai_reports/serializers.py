@@ -25,7 +25,7 @@ class AiReportSerializer(serializers.ModelSerializer):
     def get_label(self, ai_report: AiReport):
         """Replace label codes with description and remove catneutral and catnodecis"""
         return [
-            (label, settings.XAI_LABELS[label])
+            (label, settings.XAI_LABELS.get(label, label))
             for label in ai_report.label
             if label != "catneutral" and label != "catnodecis"
         ]
