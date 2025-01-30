@@ -2,9 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
-Since version v2306 the format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
+Since version Unreleased the format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+<<<<<<< HEAD
 ## v2501.4
 
 ### Added
@@ -937,3 +938,6 @@ Fixed some more minor issues
 
 - made async emails site aware
 - fixed some small issues
+=======
+## Unreleased
+>>>>>>> eec861f8 (changelog: reset changelog)
