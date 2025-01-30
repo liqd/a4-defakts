@@ -339,7 +339,7 @@ export const ModerationNotification = (props) => {
             {translated.reportUser}
           </span>}
 
-        {aiReport &&
+        {aiReport && aiReport.label.length > 0 &&
           <span className="badge a4-comments__badge a4-comments__badge--not">
             {translated.reportAi}
           </span>}
@@ -352,9 +352,9 @@ export const ModerationNotification = (props) => {
             sliderClass={aiReport ? 'poll-slider poll-slider--border' : 'poll-slider'}
           />}
 
-        {aiReport &&
+        {aiReport && aiReport.label.length > 0 &&
           <AiReport
-            Report={aiReport}
+            report={aiReport}
             toggleShowAiReport={() => toggleShowAiReport()}
             notificationPk={notification.pk}
           />}

@@ -11,6 +11,8 @@ CAPTCHA_TEST_ACCEPTED_ANSWER = "testpass"
 CAPTCHA_URL = "https://captcheck.netsyms.com/api.php"
 WAGTAILADMIN_BASE_URL = "http://localhost:8004"
 
+XAI_API_URL = ""
+
 try:
     from .polygons import *
 except ImportError:
