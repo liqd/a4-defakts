@@ -11,11 +11,7 @@ jobs:
     runs-on: ubuntu-24.04
     services:
       postgres:
-<<<<<<< HEAD
         image: postgres:16
-=======
-        image: postgres:14
->>>>>>> 59f55144 (ci: fix django and postgresql version)
         env:
           POSTGRES_PASSWORD: postgres
         ports:
