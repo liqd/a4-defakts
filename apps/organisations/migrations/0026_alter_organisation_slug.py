@@ -7,7 +7,7 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ("a4_candy_organisations", "0024_organisation_enable_geolocation"),
+        ("a4_candy_organisations", "0025_organisation_enable_geolocation"),
     ]
 
     operations = [

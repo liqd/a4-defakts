@@ -2,10 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
-Since version Unreleased the format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
+Since version v2310.1 the format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-<<<<<<< HEAD
+
 ## v2501.4
 
 ### Added
@@ -939,5 +939,28 @@ Fixed some more minor issues
 - made async emails site aware
 - fixed some small issues
 =======
-## Unreleased
->>>>>>> eec861f8 (changelog: reset changelog)
+
+
+### Changed
+
+- ai_report field from StringRelatedField to AiReportSerializer in
+  CommentWithFeedbackSerializer
+- brand-alert color to match the design
+- structure of ModerationNotification to be more a11y compliant
+- fix tests which included removed modules
+- update a4 to 208d5c1134da702fc5c6e8c5c8ea8d55ac2d012d
+- update a4 to 73ad60e06a557dbd00e7a1118fb639d13e8b4244
+- only english and german language options
+
+### Fixed
+
+- fix broken pytest-lastfailed command in Makefile
+
+### Removed
+
+- modules brainstorming, map-brainstorming, idea-collection,
+  map-idea-collection, poll, participatory-budgeting, interactive-event and
+  associated tests
+- frontend coverage ci actions
+- unused language translations from locale fork
+>>>>>>> 37404a53 (release v2310.1)
