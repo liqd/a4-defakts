@@ -11,7 +11,11 @@ jobs:
     runs-on: ubuntu-24.04
     services:
       postgres:
+<<<<<<< HEAD
         image: postgres:16
+=======
+        image: postgres:14
+>>>>>>> 59f55144 (ci: fix django and postgresql version)
         env:
           POSTGRES_PASSWORD: postgres
         ports:
@@ -26,7 +30,11 @@ jobs:
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v5
         with:
+<<<<<<< HEAD
           python-version: '3.12'
+=======
+          python-version: '3.10'
+>>>>>>> 59f55144 (ci: fix django and postgresql version)
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
