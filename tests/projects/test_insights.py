@@ -2,15 +2,11 @@ import pytest
 from django.urls import reverse
 from rest_framework import status
 
-<<<<<<< HEAD
 from adhocracy4.polls import phases
 from adhocracy4.polls.models import Poll
 from adhocracy4.polls.models import Vote
 from adhocracy4.test.helpers import freeze_phase
 from adhocracy4.test.helpers import setup_phase
-from apps.dashboard.blueprints import blueprints
-=======
->>>>>>> 9849d9ea (apps/dashboard/blueprints: remove un-needed blueprints and fix tests // webpack.common: remove uneeded apps)
 from apps.projects.insights import create_insight
 from apps.projects.models import ProjectInsight
 from apps.projects.models import create_insight_context
