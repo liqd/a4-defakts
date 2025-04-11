@@ -1,5 +1,3 @@
-import ast
-
 import backoff
 import httpx
 from celery import shared_task
@@ -46,11 +44,9 @@ def call_ai_api(comment: str) -> httpx.Response:
 
 
 def extract_and_save_ai_classifications(comment: Comment, report: dict) -> None:
-    # FIXME: the data returned from the api is not actually valid json, so we need
-    # to use ast to explicitly convert it. This should be fixed on their side.
-    confidence = ast.literal_eval((report["confidence"]))
-    label = ast.literal_eval(report["label"])
-    explanation = ast.literal_eval(report["explanation"])
+    confidence = report["confidence"]
+    label = report["label"]
+    explanation = report["explanation"]
 
     ai_report = AiReport(
         comment=comment, confidence=confidence, label=label, explanation=explanation

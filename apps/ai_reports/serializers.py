@@ -5,9 +5,15 @@ from wagtail.models import Site
 from apps.ai_reports.models import AiReport
 from apps.cms.settings.models import ImportantPages
 
+EXCLUDED_LABELS = [
+    "catneutral",
+    "catnodecis",
+    "catposfake",
+]
+
 
 class AiReportSerializer(serializers.ModelSerializer):
-    label = serializers.SerializerMethodField()
+    explanation = serializers.SerializerMethodField()
     faq_url = serializers.SerializerMethodField()
 
     class Meta:
@@ -22,12 +28,23 @@ class AiReportSerializer(serializers.ModelSerializer):
             "faq_url",
         )
 
-    def get_label(self, ai_report: AiReport):
+    def to_representation(self, instance):
+        if instance.label == "real" or all(
+            label in EXCLUDED_LABELS for label in instance.explanation
+        ):
+            return None
+        return super().to_representation(instance)
+
+    def get_explanation(self, ai_report: AiReport):
         """Replace label codes with description and remove catneutral and catnodecis"""
         return [
-            (label, settings.XAI_LABELS.get(label, label))
-            for label in ai_report.label
-            if label != "catneutral" and label != "catnodecis"
+            {
+                "code": label,
+                "label": settings.XAI_LABELS.get(label, label),
+                "explanation": explanation,
+            }
+            for label, explanation in ai_report.explanation.items()
+            if label not in EXCLUDED_LABELS
         ]
 
     def get_faq_url(self, ai_report: AiReport):
