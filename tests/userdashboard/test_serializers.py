@@ -1,12 +1,12 @@
 from datetime import timedelta
 
 import pytest
-from django.conf import settings
 from django.urls import reverse
 from django.utils import timezone
 from freezegun import freeze_time
 
 from apps.ai_reports.models import AiReport
+from apps.ai_reports.serializers import EXCLUDED_LABELS
 from apps.contrib import dates
 
 
@@ -60,17 +60,17 @@ def test_num_reports(
     assert ai_reports_created == ai_reports_received
     for ai in ai_report_objects:
         for comment in response.data:
-            if (
-                comment["ai_report"]
-                and comment["ai_report"]["comment"] == ai.comment.pk
-            ):
-                assert comment["ai_report"]["label"] == [
-                    (label, settings.XAI_LABELS[label]) for label in ai.label
-                ]
-                assert comment["ai_report"]["explanation"] == ai.explanation
-                assert comment["ai_report"]["confidence"] == ai.confidence
-                assert comment["ai_report"]["is_pending"] == ai.is_pending
-                assert comment["ai_report"]["faq_url"] == ""
+            ai_report = comment["ai_report"]
+            if ai_report and ai_report["comment"] == ai.comment.pk:
+                assert ai_report["label"] == "fake"
+                assert ai_report["confidence"] == ai.confidence
+                assert ai_report["is_pending"] == ai.is_pending
+                assert ai_report["faq_url"] == ""
+                for label in ai.explanation:
+                    if label not in EXCLUDED_LABELS:
+                        assert label in [
+                            item["code"] for item in ai_report["explanation"]
+                        ]
 
 
 @pytest.mark.django_db

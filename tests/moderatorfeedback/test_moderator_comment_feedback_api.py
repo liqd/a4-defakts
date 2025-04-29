@@ -1,6 +1,7 @@
 import pytest
 from django.urls import reverse
 
+from apps.ai_reports.serializers import EXCLUDED_LABELS
 from apps.moderatorfeedback.models import ModeratorCommentFeedback
 
 
@@ -33,7 +34,11 @@ def test_moderator_and_ai_report_added_in_comment(
     )
     assert comment.ai_report.explanation == ai_report.explanation
 
-    assert ai_report.explanation == response.data["ai_report"]["explanation"]
+    for label in ai_report.explanation:
+        if label not in EXCLUDED_LABELS:
+            assert label in [
+                item["code"] for item in response.data["ai_report"]["explanation"]
+            ]
     assert response.status_code == 200
 
 
