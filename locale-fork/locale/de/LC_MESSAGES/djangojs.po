@@ -219,13 +219,14 @@ msgctxt "defakts"
 msgid ""
 "The AI is %(percentage)s% sure that this comment contains disinformation as "
 "some of its characteristics are being fulfilled."
-msgstr ""
+msgstr "Die KI ist zu %(percentage)s% sicher, dass dieser Kommentar "
+"Desinformationen enthält, da einige der Merkmale erfüllt sind."
 
 #: adhocracy4/comments_async/static/comments_async/ai_report.jsx:10
 #: adhocracy4/comments_async/static/comments_async/ai_report.jsx:10
 msgctxt "defakts"
 msgid "This estimation is based on the following words:"
-msgstr ""
+msgstr "Diese Schätzung basiert auf den folgenden Wörtern:"
 
 #: adhocracy4/comments_async/static/comments_async/ai_report.jsx:11
 #: adhocracy4/comments_async/static/comments_async/ai_report.jsx:11
@@ -255,13 +256,13 @@ msgstr ""
 #: adhocracy4/comments_async/static/comments_async/ai_report.jsx:14
 msgctxt "defakts"
 msgid "Read more"
-msgstr ""
+msgstr "Mehr anzeigen"
 
 #: adhocracy4/comments_async/static/comments_async/ai_report.jsx:15
 #: adhocracy4/comments_async/static/comments_async/ai_report.jsx:15
 msgctxt "defakts"
 msgid "Show less"
-msgstr ""
+msgstr "Weniger anzeigen"
 
 #: adhocracy4/comments_async/static/comments_async/ai_report.jsx:16
 #: adhocracy4/comments_async/static/comments_async/ai_report.jsx:16
