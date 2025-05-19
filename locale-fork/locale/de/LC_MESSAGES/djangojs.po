@@ -8,11 +8,12 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-05-15 15:47+0200\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"POT-Creation-Date: 2025-04-04 14:01+0200\n"
+"PO-Revision-Date: 2025-05-19 13:49+0000\n"
+"Last-Translator: Tietje Khieu <t.khieu@liqd.net>\n"
+"Language-Team: German <https://weblate.liqd.net/projects/meinberlin/"
+"js-design-dev/de/>\n"
+"Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -188,7 +189,7 @@ msgstr ""
 #: adhocracy4/comments_async/static/comments_async/ai_report.jsx:7
 msgctxt "defakts"
 msgid "The defakt AI has found evidence of disinformation."
-msgstr ""
+msgstr "Die defakt KI hat Hinweise auf Desinformation gefunden."
 
 #: adhocracy4/comments_async/static/comments_async/ai_report.jsx:8
 #: adhocracy4/comments_async/static/comments_async/ai_report.jsx:8
@@ -197,6 +198,20 @@ msgid ""
 "Defakts uses artificial intelligence to check content for disinformation "
 "based on certain linguistic characteristics."
 msgstr ""
+"Defakts nutzt künstliche Intelligenz, um Inhalte anhand bestimmter "
+"sprachlicher Merkmale auf Desinformation zu überprüfen."
+
+#: adhocracy4/comments_async/static/comments_async/ai_report.jsx:8
+#, javascript-format
+msgctxt "defakts"
+msgid ""
+"The AI considers some of the characteristics of disinformation to be "
+"fulfilled based on the following words in the comment. The probability is "
+"given in % for each characteristic."
+msgstr ""
+"Die KI betrachtet einige der Merkmale von Desinformation als erfüllt, "
+"basierend auf den folgenden Wörtern im Kommentar. Die Wahrscheinlichkeit "
+"wird in % für jedes Merkmal angegeben."
 
 #: adhocracy4/comments_async/static/comments_async/ai_report.jsx:9
 #: adhocracy4/comments_async/static/comments_async/ai_report.jsx:9
@@ -220,12 +235,15 @@ msgid ""
 "our [FAQs]. Here you will also find advice on how to respond constructively "
 "to disinformation."
 msgstr ""
+"Wenn Sie mehr darüber erfahren möchten, was die Merkmale bedeuten, besuchen "
+"Sie bitte unsere [FAQs]. Hier finden Sie auch Ratschläge, wie Sie "
+"konstruktiv auf Desinformation reagieren können."
 
 #: adhocracy4/comments_async/static/comments_async/ai_report.jsx:12
 #: adhocracy4/comments_async/static/comments_async/ai_report.jsx:12
 msgctxt "defakts"
 msgid "Click to view the AI explanation for reporting this comment."
-msgstr ""
+msgstr "Klicken Sie hier, um die Erklärung der KI zu dieser Meldung anzusehen."
 
 #: adhocracy4/comments_async/static/comments_async/ai_report.jsx:13
 #: adhocracy4/comments_async/static/comments_async/ai_report.jsx:13
@@ -249,13 +267,13 @@ msgstr ""
 #: adhocracy4/comments_async/static/comments_async/ai_report.jsx:16
 msgctxt "defakts"
 msgid "Show AI info to users"
-msgstr ""
+msgstr "Informationen zur KI anzeigen"
 
 #: adhocracy4/comments_async/static/comments_async/ai_report.jsx:17
 #: adhocracy4/comments_async/static/comments_async/ai_report.jsx:17
 msgctxt "defakts"
 msgid "Hide AI info from users"
-msgstr ""
+msgstr "Informationen zur KI ausblenden"
 
 #: adhocracy4/comments_async/static/comments_async/category_list.jsx:5
 #: adhocracy4/comments_async/static/comments_async/category_list.jsx:5
